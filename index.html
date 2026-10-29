@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>John M. | Applied Statistics and Data Science student</title>
+<meta name="description" content="Personal portfolio of John M., a BSc Applied Statistics and Data Science student learning Python, statistics and data analysis.">
+<meta name="theme-color" content="#121413">
+<style>
+:root{
+  --bg:#121413; --surface:#1a1d1b; --line:#2b312d; --text:#e9ece6; --muted:#9ba49c;
+  --lime:#b6e04a; --lime-dim:#8fb23a; --on-lime:#10150a;
+  --sans:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --wrap:1080px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:72px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--lime);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:3px}
+.wrap{width:min(var(--wrap),100% - 2.5rem);margin-inline:auto}
+section{padding:5rem 0;border-top:1px solid var(--line)}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em;margin:0}
+h2{font-size:clamp(1.6rem,3.5vw,2.1rem);font-weight:600;margin-bottom:1.5rem}
+h3{font-size:1.125rem;font-weight:600;letter-spacing:-.01em}
+p{margin:0 0 1rem;max-width:62ch}
+.muted{color:var(--muted)}
+.skip{position:absolute;left:-999px;top:0;background:var(--lime);color:var(--on-lime);padding:.6rem 1rem;z-index:100}
+.skip:focus{left:0}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(18,20,19,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{color:var(--text);text-decoration:none;font-weight:600;letter-spacing:-.01em}
+.brand span{color:var(--lime)}
+nav ul{display:flex;gap:1.75rem;list-style:none;margin:0;padding:0}
+nav a{color:var(--muted);text-decoration:none;font-size:.97rem;padding:.4rem 0;border-bottom:1px solid transparent}
+nav a:hover{color:var(--text);border-bottom-color:var(--lime)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:6px;padding:.45rem .8rem;font:inherit;font-size:.95rem;cursor:pointer}
+
+/* hero */
+.hero{padding:5.5rem 0 5rem;border-top:0}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:4rem;align-items:center}
+.hero h1{font-size:clamp(2.5rem,6.5vw,4.4rem);font-weight:650;letter-spacing:-.035em;margin-bottom:1.5rem}
+.lead{font-size:1.2rem;color:#c9cfc6;max-width:34em}
+.cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+.btn{display:inline-block;padding:.75rem 1.3rem;border-radius:6px;font-weight:600;text-decoration:none;font-size:1rem;border:1px solid var(--lime);font-family:inherit;cursor:pointer}
+.btn-primary{background:var(--lime);color:var(--on-lime)}
+.btn-primary:hover{background:#c7ee5a}
+.btn-ghost{background:transparent;color:var(--lime)}
+.btn-ghost:hover{background:rgba(182,224,74,.1)}
+@media (prefers-reduced-motion:no-preference){.hero-grid{animation:rise .6s ease-out both}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* portrait */
+.portrait{position:relative;aspect-ratio:4/5;width:100%;max-width:340px;margin-inline:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.portrait .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;text-align:center;padding:1.5rem;color:var(--muted);font-size:.92rem;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:34px 34px;background-position:center}
+.portrait .ph svg{width:56px;height:56px;stroke:var(--lime-dim);fill:none;stroke-width:1.5;background:var(--surface);padding:6px;border-radius:50%}
+.portrait .ph span{background:var(--surface);padding:.2rem .5rem;border-radius:4px}
+.portrait.has-photo .ph{display:none}
+.corner{position:absolute;width:16px;height:16px;border:2px solid var(--lime);z-index:2}
+.c1{top:10px;left:10px;border-right:0;border-bottom:0}.c2{bottom:10px;right:10px;border-left:0;border-top:0}
+
+/* about + skills */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem}
+.skills{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.skills li{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:.9rem 1.1rem;border-top:1px solid var(--line)}
+.skills li:first-child{border-top:0}
+.tag{font-family:var(--mono);font-size:.78rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.15rem .65rem;white-space:nowrap}
+.tag.now{color:var(--lime);border-color:var(--lime-dim)}
+
+/* projects */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1.5rem;display:flex;flex-direction:column;gap:.9rem}
+.card p{margin:0;color:#c9cfc6;font-size:1rem}
+.card .tag{align-self:flex-start}
+.note{margin-top:1.5rem;font-size:.95rem}
+
+/* journey */
+.path{list-style:none;margin:0;padding:0 0 0 1.5rem;border-left:1px solid var(--line)}
+.path li{position:relative;padding:0 0 2rem 1.25rem}
+.path li:last-child{padding-bottom:0}
+.path li::before{content:"";position:absolute;left:calc(-1.5rem - 5px);top:.55rem;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--lime-dim)}
+.path li.now::before{background:var(--lime);border-color:var(--lime)}
+.path h3{margin-bottom:.25rem}
+.path .when{font-family:var(--mono);font-size:.8rem;color:var(--lime-dim);display:block;margin-bottom:.3rem}
+.path p{margin:0;color:#c9cfc6}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:3.5rem}
+.links{list-style:none;margin:1.25rem 0 0;padding:0;display:grid;gap:.6rem}
+.links .off{color:var(--muted);font-size:.95rem}
+form{display:grid;gap:1.1rem}
+label{display:grid;gap:.4rem;font-size:.95rem;color:var(--muted)}
+input,textarea{font:inherit;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:.7rem .85rem;width:100%}
+input:focus-visible,textarea:focus-visible{outline:2px solid var(--lime);outline-offset:1px;border-color:var(--lime)}
+textarea{min-height:130px;resize:vertical}
+.form-note{font-size:.9rem;color:var(--muted);margin:0}
+#status{min-height:1.5rem;margin:0;color:var(--lime);font-size:.95rem}
+#status.err{color:#e6a86a}
+
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-size:.93rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+
+@media (max-width:860px){
+  .hero-grid,.two,.contact-grid{grid-template-columns:1fr;gap:2.5rem}
+  .cards{grid-template-columns:1fr}
+  .portrait{max-width:280px;margin-inline:0}
+  section{padding:3.75rem 0}.hero{padding:3.5rem 0}
+}
+@media (max-width:720px){
+  .menu-btn{display:block}
+  nav{position:absolute;left:0;right:0;top:64px;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+  nav.open{display:block}
+  nav ul{flex-direction:column;gap:0;padding:.5rem 1.25rem 1rem}
+  nav a{display:block;padding:.8rem 0;border-bottom:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top">John M<span>.</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Menu</button>
+    <nav id="siteNav" aria-label="Main">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#journey">Learning Journey</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Learning to make sense of data.</h1>
+        <p class="lead">I’m John M., an Applied Statistics and Data Science student. I’m building my skills in Python, statistics and explaining what the numbers actually say.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#projects">See projects</a>
+          <a class="btn btn-ghost" href="#about">About me</a>
+        </div>
+      </div>
+      <!-- To show your photo, save it as profile.jpg next to this file. It appears automatically. -->
+      <div class="portrait" id="portrait">
+        <span class="corner c1"></span><span class="corner c2"></span>
+        <img id="portraitImg" src="profile.jpg" alt="Portrait of John M." hidden>
+        <div class="ph" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="18" r="8"/><path d="M8 42c2-9 8-14 16-14s14 5 16 14"/></svg>
+          <span>Your photo goes here</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap two">
+      <div>
+        <h2>About</h2>
+        <p>I’m studying for a BSc in Applied Statistics and Data Science. I’m at the beginning of the course, so most of what I do right now is learn the foundations and practise them.</p>
+        <p>I enjoy the idea that a messy table of numbers can answer a real question. I’m learning how to collect data, summarise it, draw it clearly and explain the result in plain language.</p>
+        <p>This site is where I’ll keep track of that progress. It is a learning record, and it will grow as I finish real work.</p>
+      </div>
+      <div>
+        <h2>Skills</h2>
+        <ul class="skills">
+          <li>Python <span class="tag now">Learning</span></li>
+          <li>Statistics fundamentals <span class="tag now">Learning</span></li>
+          <li>Data analysis <span class="tag now">Beginner</span></li>
+          <li>Data visualization <span class="tag now">Beginner</span></li>
+          <li>Communicating results <span class="tag now">Practising</span></li>
+          <li>Machine learning <span class="tag">Not started yet</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <div class="cards">
+        <article class="card">
+          <span class="tag">Planned</span>
+          <h3>Kenya public-data exploration</h3>
+          <p>Pick a public Kenyan dataset, clean it, and ask a few simple questions about it. The goal is clear charts and honest conclusions.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Planned</span>
+          <h3>Statistics playground</h3>
+          <p>A small set of experiments to see ideas like averages, spread and sampling in action, so the formulas make more sense.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Planned</span>
+          <h3>Python learning log</h3>
+          <p>Short notes and exercises from my Python practice, written as I go so I can look back and see what has improved.</p>
+        </article>
+      </div>
+      <p class="muted note">None of these are finished yet. Each card will link to real work once it exists.</p>
+    </div>
+  </section>
+
+  <section id="journey">
+    <div class="wrap">
+      <h2>Learning journey</h2>
+      <ol class="path">
+        <li class="now"><span class="when">Now</span><h3>Foundations</h3><p>Python basics, descriptive statistics, and reading data carefully.</p></li>
+        <li><span class="when">Next</span><h3>Working with real data</h3><p>Tables and cleaning in pandas, and charts in matplotlib.</p></li>
+        <li><span class="when">Next</span><h3>First published project</h3><p>Finish one small analysis, put it on GitHub and write up what I found.</p></li>
+        <li><span class="when">Later</span><h3>Inference and probability</h3><p>Confidence intervals, hypothesis tests and regression.</p></li>
+        <li><span class="when">Later</span><h3>Introduction to machine learning</h3><p>Start with simple models once the statistics underneath feel solid.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <h2>Contact</h2>
+        <p>If you’d like to say hello, suggest a dataset, or share advice for a beginner, I’d be glad to hear from you.</p>
+        <ul class="links" id="links"></ul>
+      </div>
+      <form id="contactForm" novalidate>
+        <label>Your name
+          <input id="name" name="name" autocomplete="name" required>
+        </label>
+        <label>Message
+          <textarea id="message" name="message" required></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Open in my email app</button>
+        <p class="form-note">This form does not send anything through a server. It opens your own email app with the message filled in, and you send it from there.</p>
+        <p id="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="year"></span> John M.</span>
+    <span>Built with plain HTML, CSS and JavaScript.</span>
+  </div>
+</footer>
+
+<script>
+/* ===== EDIT THESE THREE VALUES ===== */
+const CONFIG = {
+  email: "your.email@example.com",            // your real email address
+  github: "",                                  // e.g. "https://github.com/yourname"
+  linkedin: ""                                 // e.g. "https://www.linkedin.com/in/yourname"
+};
+/* =================================== */
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Mobile menu
+const btn = document.getElementById("menuBtn");
+const nav = document.getElementById("siteNav");
+function setMenu(open){
+  nav.classList.toggle("open", open);
+  btn.setAttribute("aria-expanded", String(open));
+  btn.textContent = open ? "Close" : "Menu";
+}
+btn.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+nav.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+window.addEventListener("resize", () => { if (window.innerWidth > 720) setMenu(false); });
+
+// Portrait: show profile.jpg only if it loads, otherwise keep the placeholder
+const img = document.getElementById("portraitImg");
+const box = document.getElementById("portrait");
+const probe = new Image();
+probe.onload = () => { img.hidden = false; box.classList.add("has-photo"); };
+probe.src = "profile.jpg";
+
+// Contact links: real link when set, plain note when not
+const emailSet = CONFIG.email && CONFIG.email !== "your.email@example.com";
+const items = [
+  ["GitHub", CONFIG.github, CONFIG.github],
+  ["LinkedIn", CONFIG.linkedin, CONFIG.linkedin],
+  ["Email", emailSet ? CONFIG.email : "", emailSet ? "mailto:" + CONFIG.email : ""]
+];
+const list = document.getElementById("links");
+items.forEach(([label, text, href]) => {
+  const li = document.createElement("li");
+  if (href) {
+    const a = document.createElement("a");
+    a.href = href; a.textContent = label + ": " + text;
+    if (label !== "Email") { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+    li.appendChild(a);
+  } else {
+    li.className = "off";
+    li.textContent = label + ": not added yet (edit CONFIG in index.html)";
+  }
+  list.appendChild(li);
+});
+
+// Contact form (mailto)
+const form = document.getElementById("contactForm");
+const status = document.getElementById("status");
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  status.className = "";
+  const name = form.name.value.trim();
+  const message = form.message.value.trim();
+  if (!name || !message) {
+    status.className = "err";
+    status.textContent = "Please fill in your name and a message.";
+    return;
+  }
+  if (!emailSet) {
+    status.className = "err";
+    status.textContent = "The site owner has not set an email address yet, so this form can’t open an email.";
+    return;
+  }
+  const subject = encodeURIComponent("Message from " + name + " via your portfolio");
+  const body = encodeURIComponent(message + "\n\nFrom: " + name);
+  window.location.href = "mailto:" + CONFIG.email + "?subject=" + subject + "&body=" + body;
+  status.textContent = "Your email app should open with the message ready. Nothing is sent until you press send there.";
+});
+</script>
+</body>
+</html>
